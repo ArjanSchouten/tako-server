@@ -13,6 +13,18 @@ services:
     build: './src'
     networks:
      - proxy
+     - db
+    depends_on:
+     - db
+  db:
+   image: tutum/mongodb
+   networks:
+    - db
+   environment:
+     MONGODB_USER: tako
+     MONGODB_DATABASE: tako
+     MONGODB_PASS: password
 
 networks:
   proxy:
+  db:
