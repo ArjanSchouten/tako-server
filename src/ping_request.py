@@ -1,23 +1,13 @@
 from flask_restful import Resource, abort
-from flask import request, jsonify
 
 from models.device import Device
+from utils import check_firmware_version_header, check_device_id_header
 
 
 class PingRequest(Resource):
-    def get(self):
-        """
-        Handle the GET request comming from the ESP8266.
-        The Firmware-Version and the Device-ID should be passed in the headers.
-
-        :return:
-        """
-        device_id = request.headers.get('Device-ID')
-        version = request.headers.get('Firmware-Version')
-
-        if device_id is None or version is None:
-            abort(400)
-
+    @check_firmware_version_header
+    @check_device_id_header
+    def get(self, firmware_version, device_id):
         # Lookup the device in the database or abort if it isn't found
         device = self.get_device_by_device_id(device_id)
         if device is None:
