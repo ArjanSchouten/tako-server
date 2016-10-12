@@ -6,7 +6,7 @@ RUN rm -rf /var/www && \
 
 COPY conf /etc/nginx
 
-RUN rm -r /etc/nginx/sites-enabled && \
+RUN rm -rf /etc/nginx/sites-enabled && \
     mkdir -p /etc/nginx/sites-enabled && \
     ln -s /etc/nginx/sites-available/takoserver.conf /etc/nginx/sites-enabled/takoserver.conf
 
