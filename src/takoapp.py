@@ -7,24 +7,32 @@ from mongoengine import connect
 from ping_request import PingRequest
 
 
-class App:
+class TakoApp:
+    """
+    TakoApp which makes it easier to run the tests without spawning a real server.
+    """
+
     def __init__(self):
         self.app = Flask(__name__)
         self.api = Api(self.app)
 
     def run(self):
-        connect('tako', host='db', port=27017, username='tako', password='password')
         self.register_routes()
+        self.database_connect()
         self.app.run(debug=True, host='0.0.0.0', port=8888)
         return self.app
 
     def register_routes(self):
-        # Route definitions
+        # Register the route definitions
         self.api.add_resource(PingRequest, '/ping')
+
+    @staticmethod
+    def database_connect():
+        connect('tako', host='db', port=27017, username='tako', password='password')
 
 
 if __name__ == '__main__':
-    flaskApp = App()
+    flaskApp = TakoApp()
 
 
     @flaskApp.api.representation('application/json')

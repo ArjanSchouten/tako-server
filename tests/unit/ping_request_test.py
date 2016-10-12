@@ -5,12 +5,13 @@ from mongoengine import connect
 
 from models.device import Device
 from models.message import Message
-from src.app import App
+from src.takoapp import TakoApp
 
 
 class PingRequestTest(TestCase):
     def create_app(self):
-        app = App()
+        # Create an app without spawning a real server so we can execute fake requests
+        app = TakoApp()
         app.register_routes()
         app.app.config['TESTING'] = True
         return app.app
