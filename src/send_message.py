@@ -7,9 +7,8 @@ from utils import check_firmware_version_header, check_device_id_header
 
 
 class SendMessageRequest(Resource):
-    @check_firmware_version_header
     @check_device_id_header
-    def post(self, firmware_version, device_id):
+    def post(self, device_id):
         json = request.get_json(silent=True)
         if json is None or json['message'] is None:
             abort(400)

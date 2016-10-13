@@ -15,11 +15,8 @@ class SendMessageRequestTest(BaseTest):
         response = self.client.post("/send", headers={'Device-ID': 'ABC'})
         self.assert400(response)
 
-        response = self.client.post("/send", headers={'Firmware-Version': '1.0.0'})
-        self.assert400(response)
-
     def test_send_message(self):
-        headers = {'Firmware-Version': '1.0.0', 'Device-ID': 'BLABLA'}
+        headers = {'Device-ID': 'BLABLA'}
         # Without sending the data we expect a BadRequest response
         response = self.client.post("/send", headers=headers)
         self.assert400(response)
