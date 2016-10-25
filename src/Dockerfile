@@ -9,6 +9,6 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/main py-psyc
     pip install --no-cache-dir -r requirements.txt
 
 ENTRYPOINT ["python"]
-CMD ["app.py"]
+CMD ["takoapp.py"]
 
 EXPOSE 8888
