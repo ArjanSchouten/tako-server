@@ -13,7 +13,9 @@ class PingRequest(Resource):
         if device is None:
             abort(404)
 
-        return {'update': False, 'messages': map(lambda m: m.message, device.messages)}
+        if len(device.messages) > 0:
+            return {'update': False, 'message': device.messages[0].message}
+        return {'update': False}
 
     @staticmethod
     def get_device_by_device_id(device_id):

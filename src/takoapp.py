@@ -2,6 +2,7 @@ from flask import Flask
 from flask import make_response
 from flask_restful import output_json
 from flask_restful import Api
+from models.device import Device
 from mongoengine import connect
 
 from ping_request import PingRequest
@@ -20,6 +21,9 @@ class TakoApp:
     def run(self):
         self.register_routes()
         self.database_connect()
+        # Fake data because of quick prototype :)
+        Device(device_id="test1234", receiver_id="test").save()
+        Device(device_id="test", receiver_id="test1234").save()
         self.app.run(debug=True, host='0.0.0.0', port=8888)
         return self.app
 
@@ -50,3 +54,4 @@ if __name__ == '__main__':
 
 
     flaskApp.run()
+

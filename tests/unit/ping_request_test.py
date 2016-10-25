@@ -27,7 +27,7 @@ class PingRequestTest(BaseTest):
         self.assert200(response)
         try:
             data = json.loads(response.data)
-            self.assertEqual(len(data['messages']), 0)
+            self.assertFalse('message' in data)
         except ValueError:
             self.assertTrue(False, "The ping request didn't return json")
 
@@ -38,7 +38,7 @@ class PingRequestTest(BaseTest):
         self.assert200(response)
         try:
             data = json.loads(response.data)
-            self.assertEqual(len(data['messages']), 1)
+            self.assertEqual(data['message'], 'This is a test')
         except ValueError:
             self.assertTrue(False, "The ping request didn't return json")
 

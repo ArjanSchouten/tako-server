@@ -43,7 +43,6 @@ class SendMessageRequestTest(BaseTest):
         self.assert200(response)
         try:
             data = json.loads(response.data)
-            self.assertEqual(data['messages'][0], 'test')
-            self.assertEqual(len(data['messages']), 1)
+            self.assertEqual(data['message'], 'test')
         except ValueError:
             self.assertTrue(False, 'No json is returned from the ping request')
