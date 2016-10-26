@@ -9,8 +9,6 @@ services:
      - webserver
     networks:
      - proxy
-    volumes:
-     - "/var/www/firmwarestore:/var/www/firmwarestore"
   webserver:
     build: './src'
     networks:
@@ -18,6 +16,8 @@ services:
      - db
     depends_on:
      - db
+    volumes:
+     - "/var/www/firmwarestore:/var/www/firmwarestore"
   db:
    image: tutum/mongodb
    networks:
