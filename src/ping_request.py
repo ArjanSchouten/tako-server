@@ -14,8 +14,9 @@ class PingRequest(Resource):
             abort(404)
 
         if len(device.messages) > 0:
-            return {'update': False, 'message': device.messages[0].message}
-        return {'update': False}
+            return {'update': True, 'message': device.messages[0].message}
+        else:
+            return {'update': True}
 
     @staticmethod
     def get_device_by_device_id(device_id):

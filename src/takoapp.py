@@ -7,6 +7,7 @@ from mongoengine import connect
 
 from ping_request import PingRequest
 from send_message import SendMessageRequest
+from update_request import UpdateRequest
 
 
 class TakoApp:
@@ -31,6 +32,7 @@ class TakoApp:
         # Register the route definitions
         self.api.add_resource(PingRequest, '/ping')
         self.api.add_resource(SendMessageRequest, '/send')
+        self.api.add_resource(UpdateRequest, '/update/<string:version>')
 
     @staticmethod
     def database_connect():
