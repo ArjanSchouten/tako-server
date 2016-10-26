@@ -9,6 +9,8 @@ services:
      - webserver
     networks:
      - proxy
+    volumes:
+     - "/var/www/firmwarestore:/var/www/firmwarestore"
   webserver:
     build: './src'
     networks:
