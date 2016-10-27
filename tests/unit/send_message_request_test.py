@@ -39,7 +39,7 @@ class SendMessageRequestTest(BaseTest):
         self.assertEqual(inserted_message.message, 'test')
 
         headers.pop('Content-Type', None)
-        response = self.client.get('/ping', headers={'Firmware-Version': '1.1.1', 'Device-ID': 'TEST'})
+        response = self.client.get('/ping', headers={'Firmware-Version': '1', 'Device-ID': 'TEST'})
         self.assert200(response)
         try:
             data = json.loads(response.data)
