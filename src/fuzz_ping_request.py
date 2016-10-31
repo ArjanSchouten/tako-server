@@ -1,7 +1,6 @@
 import flask
 import fuzzing
 from flask_restful import Resource
-from fuzzing import FuzzExecutor
 
 seed = "{\"message\": \"test\", \"newversion\": \"5\", \"update\": false}"
 number_of_fuzzed_variants_to_generate = 1000
@@ -16,6 +15,6 @@ class FuzzPingRequest(Resource):
         global current_fuzz
         current_fuzz += 1
         response = flask.make_response()
-        response.data = fuzzed_data[current_fuzz]
+        response.data = fuzzed_data[current_fuzz % number_of_fuzzed_variants_to_generate]
 
         return response
