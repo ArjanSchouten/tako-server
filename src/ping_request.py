@@ -20,7 +20,7 @@ class PingRequest(Resource):
         if len(device.messages) > 0:
             return {'update': update, 'message': device.messages.pop().message}
         elif update:
-            return {'update': update, 'newversion': '%d' % newversion}
+            return {'update': update, 'newversion': str(newversion)}
         else:
             return {'update': update}
 

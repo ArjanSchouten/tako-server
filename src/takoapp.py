@@ -2,6 +2,7 @@ from flask import Flask
 from flask import make_response
 from flask_restful import output_json
 from flask_restful import Api
+from fuzz_ping_request import FuzzPingRequest
 from models.device import Device
 from mongoengine import connect
 
@@ -32,6 +33,7 @@ class TakoApp:
         # Register the route definitions
         self.api.add_resource(PingRequest, '/ping')
         self.api.add_resource(SendMessageRequest, '/send')
+        self.api.add_resource(FuzzPingRequest, '/ping-fuzz')
         self.api.add_resource(UpdateRequest, '/update/<string:version>')
 
     @staticmethod

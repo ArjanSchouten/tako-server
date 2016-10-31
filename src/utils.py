@@ -53,7 +53,7 @@ def firmwareupdate_path(version):
 
 
 def firmwareupdate_filename(version):
-    return 'firmwareupdate-%d.bin' % version
+    return 'firmwareupdate-%d.bin'.format(version)
 
 
 def firmware_version_exists(filename):
